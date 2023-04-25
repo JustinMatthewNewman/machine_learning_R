@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://drive.google.com/uc?export=download&id=1fj7OO7X2uFYOI0zM5ZfjYB27vdI43qEr" alt="logo" width="205" height="auto" />
+  <img src="https://raw.githubusercontent.com/JustinMatthewNewman/geoJson/main/ml_image.png" alt="logo" width="205" height="auto" />
   <h1>Machine Learning Project in R</h1>
   <p>
 This Machine Learning Project in R explores Ridge, Lasso, KNN, Tree, and Neural Networks models. The project is created by Justin Newman, Hannah Ph, Dana Stufin, and Grace.
