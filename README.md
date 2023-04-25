@@ -13,11 +13,11 @@ This Machine Learning Project in R explores Ridge, Lasso, KNN, Tree, and Neural 
 <!-- Table of Contents -->
 :notebook_with_decorative_cover: Table of Contents
 
-    About the Project
-        Tech Stack
-    Getting Started
-        Prerequisites
-        Installation
+   - [About the Project](#star2-about-the-project)
+   - [Tech Stack](#space_invader-tech-stack)
+   - [Getting Started](#toolbox-getting-started)
+   - [Prerequisites](#bangbang-prerequisites)
+   - [Installation](#gear-installation)
     Contributors
 
 <!-- About the Project -->
@@ -27,6 +27,12 @@ This project aims to explore various machine learning models, including Ridge, L
 :space_invader: Tech Stack
 
     R
+    R Studio
+    Lasso
+    Ridge
+    KNN
+    Tree
+    Neural Network
 
 :toolbox: Getting Started
 :bangbang: Prerequisites
