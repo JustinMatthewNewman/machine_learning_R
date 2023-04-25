@@ -10,15 +10,7 @@ This Machine Learning Project in R explores Ridge, Lasso, KNN, Tree, and Neural 
 <a href="https://github.com/JustinMatthewNewman/machine_learning_R.git" target="_blank"></a>
 </div>
 <br />
-<!-- Table of Contents -->
-## :notebook_with_decorative_cover: Table of Contents
 
-   - [About the Project](#star2-about-the-project)
-   - [Tech Stack](#space_invader-tech-stack)
-   - [Getting Started](#toolbox-getting-started)
-   - [Prerequisites](#bangbang-prerequisites)
-   - [Installation](#gear-installation)
-    - [Contributors](#handshake-contributors)
 
 <!-- About the Project -->
 ## :star2: About the Project
