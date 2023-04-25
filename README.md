@@ -7,7 +7,7 @@
 This Machine Learning Project in R explores Ridge, Lasso, KNN, Tree, and Neural Networks models. The project is created by Justin Newman, Hannah Ph, Dana Stufin, and Grace.
   </p>
   
-  <p>[<h1>Machine Learning Project using R studio.</h1>](https://docs.google.com/presentation/d/1cRKfK1DrgDyp6GJxMdjHjsia9JmzTwP_OUkKhztQP7s/edit?usp=sharing)</p>
+  <p>(https://docs.google.com/presentation/d/1cRKfK1DrgDyp6GJxMdjHjsia9JmzTwP_OUkKhztQP7s/edit?usp=sharing)</p>
 <!-- Badges -->
 
 <a href="https://github.com/JustinMatthewNewman/machine_learning_R.git" target="_blank"></a>
