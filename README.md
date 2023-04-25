@@ -11,17 +11,17 @@ This Machine Learning Project in R explores Ridge, Lasso, KNN, Tree, and Neural 
 </div>
 <br />
 <!-- Table of Contents -->
-:notebook_with_decorative_cover: Table of Contents
+## :notebook_with_decorative_cover: Table of Contents
 
    - [About the Project](#star2-about-the-project)
    - [Tech Stack](#space_invader-tech-stack)
    - [Getting Started](#toolbox-getting-started)
    - [Prerequisites](#bangbang-prerequisites)
    - [Installation](#gear-installation)
-    Contributors
+    - [Contributors](#handshake-contributors)
 
 <!-- About the Project -->
-:star2: About the Project
+## :star2: About the Project
 
 This project aims to explore various machine learning models, including Ridge, Lasso, KNN, Tree, and Neural Networks, using the R programming language. The project is authored by Justin Newman, Hannah Ph, Dana Stufin, and Grace.
 :space_invader: Tech Stack
