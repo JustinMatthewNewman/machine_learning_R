@@ -6,8 +6,8 @@ This Machine Learning Project in R explores Ridge, Lasso, KNN, Tree, and Neural 
   </p>
 <!-- Badges -->
 
-<a href="https://your_project_website.vercel.app" target="_blank"></a>
-<a href="https://your_project_website.vercel.app" target="_blank"></a>
+<a href="https://github.com/JustinMatthewNewman/machine_learning_R.git" target="_blank"></a>
+<a href="https://github.com/JustinMatthewNewman/machine_learning_R.git" target="_blank"></a>
 </div>
 <br />
 <!-- Table of Contents -->
@@ -40,7 +40,7 @@ This project aims to explore various machine learning models, including Ridge, L
 
     bash
 
-git clone https://github.com/your_username/your_repository.git
+git clone https://github.com/JustinMatthewNewman/machine_learning_R.git
 
 Open the project in RStudio.
 
@@ -48,7 +48,7 @@ Install required R packages:
 
 R
 
-    install.packages("package_name")
+    install.packages("tree")
 
     Run the R scripts in the project.
 
