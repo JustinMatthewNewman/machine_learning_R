@@ -25,19 +25,17 @@ plot (NN)
 
 
 # DATA MTCARS NN
-
 data(mtcars)
 mtcars$am <- as.factor(mtcars$am)
 set.seed(1)
 train_idx <- sample(1:nrow(mtcars), nrow(mtcars)*0.7)
 train_data <- mtcars[train_idx, ]
 test_data <- mtcars[-train_idx, ]
-model <- neuralnet(am ~ ., train_data, hidden = 3)
+library(neuralnet)
+model <- neuralnet(am ~ mpg + cyl + disp + hp + drat + wt + qsec + vs + carb, train_data, hidden = c(5, 3))
 plot(model)
-
-test_pred <- compute(model, test_data[,1:(ncol(mtcars) - 1)])
-test_pred_result <- test_pred$net.result
-test_pred <- max.col(test_pred_result)
+test_pred <- predict(model, test_data[,1:9])
+test_pred <- max.col(test_pred)
 accuracy <- sum(test_pred == test_data$am) / nrow(test_data)
 accuracy
 test_pred
