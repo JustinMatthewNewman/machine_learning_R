@@ -16,7 +16,7 @@ x = data.matrix(mtcars[, c('mpg', 'wt', 'drat', 'qsec')])
 
 
 #k-fold cross-validation
-cv_model <- cv.glmnet(x, y, alpha = 0)
+cv_model <- cv.glmnet(x, y, alpha = 1)
 
 #find optimal lambda value that minimizes test MSE
 best_lambda <- cv_model$lambda.min
@@ -27,7 +27,7 @@ best_lambda
 plot(cv_model) 
 
 #coefficients of best model
-best_model <- glmnet(x, y, alpha = 0, lambda = best_lambda)
+best_model <- glmnet(x, y, alpha = 1, lambda = best_lambda)
 coef(best_model)
 
 #new observation
@@ -67,7 +67,7 @@ y <- spam$free
 x <- data.matrix(spam[, c('make', 'address', 'all', 'our')])
 
 #k-fold cross-validation
-cv_model <- cv.glmnet(x, y, alpha = 0)
+cv_model <- cv.glmnet(x, y, alpha = 1)
 
 #find optimal lambda value that minimizes test MSE
 best_lambda <- cv_model$lambda.min
@@ -78,7 +78,7 @@ best_lambda
 plot(cv_model) 
 
 #coefficients of best model
-best_model <- glmnet(x, y, alpha = 0, lambda = best_lambda)
+best_model <- glmnet(x, y, alpha = 1, lambda = best_lambda)
 coef(best_model)
 
 #new observation
@@ -113,7 +113,7 @@ y <- heart$age
 x <- data.matrix(heart[, c('platelets', 'creatinine_phosphokinase', 'serum_sodium', 'serum_creatinine')])
 
 #k-fold cross-validation
-cv_model <- cv.glmnet(x, y, alpha = 0)
+cv_model <- cv.glmnet(x, y, alpha = 1)
 
 #find optimal lambda value that minimizes test MSE
 best_lambda <- cv_model$lambda.min
@@ -124,7 +124,7 @@ best_lambda
 plot(cv_model) 
 
 #coefficients of best model
-best_model <- glmnet(x, y, alpha = 0, lambda = best_lambda)
+best_model <- glmnet(x, y, alpha = 1, lambda = best_lambda)
 coef(best_model)
 
 #new observation
@@ -160,7 +160,7 @@ y <- wine$Malic.acid
 x <- data.matrix(wine[, c('Alcohol', 'Mg', 'Proanth', 'OD', "Hue", "Proline")])
 
 #k-fold cross-validation
-cv_model <- cv.glmnet(x, y, alpha = 0)
+cv_model <- cv.glmnet(x, y, alpha = 1)
 
 #find optimal lambda value that minimizes test MSE
 best_lambda <- cv_model$lambda.min
@@ -171,7 +171,7 @@ best_lambda
 plot(cv_model) 
 
 #coefficients of best model
-best_model <- glmnet(x, y, alpha = 0, lambda = best_lambda)
+best_model <- glmnet(x, y, alpha = 1, lambda = best_lambda)
 coef(best_model)
 
 #new observation
@@ -211,7 +211,7 @@ x <- data.matrix(food[, c('cal_fat', 'total_fat', 'sodium', 'cholesterol', "suga
 
 
 #k-fold cross-validation
-cv_model <- cv.glmnet(x, y, alpha = 0)
+cv_model <- cv.glmnet(x, y, alpha = 1)
 
 #find optimal lambda value that minimizes test MSE
 best_lambda <- cv_model$lambda.min
@@ -222,7 +222,7 @@ best_lambda
 plot(cv_model) 
 
 #coefficients of best model
-best_model <- glmnet(x, y, alpha = 0, lambda = best_lambda)
+best_model <- glmnet(x, y, alpha = 1, lambda = best_lambda)
 coef(best_model)
 
 #new observation
