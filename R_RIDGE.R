@@ -1,4 +1,4 @@
-# Project work
+# Project work by DANA Stufin
 #fast food data set
 fastfood <- read.csv('fastfood.csv')
 getwd()
