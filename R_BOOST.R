@@ -62,8 +62,8 @@ auc(mtcars_test$am, predProb)
 
 # ========== KERN boosting regression ==========
 
-url = root + "kernlab_spam.csv"
-kern = read.csv(url)
+url = "kernlab_spam.csv"
+kern = read.csv(paste0(root, url))
 kern
 set.seed(1)
 
@@ -124,12 +124,9 @@ auc(kern_test$type, predProb)
 
 # ========== Heart Failure boosting regression ==========
 
-url = root + "HeartFailure.csv"
-Heart = read.csv(url)
-Heart
-
+url = "HeartFailure.csv"
+Heart = read.csv(paste0(root, url))
 set.seed(1)
-
 Heart_train = Heart %>%
   sample_frac(0.5)
 Heart_test = Heart %>%
@@ -182,9 +179,8 @@ auc(Heart_test$DEATH_EVENT, predProb)
 
 # ========== Wine Dataset ==========
 
-url = root + "wine.csv"
-WineDat=read.csv(url)
-WineDat
+url = "wine.csv"
+WineDat=read.csv(paste0(root, url))
 
 #Wine boosting regression
 
@@ -243,8 +239,8 @@ auc(wine_test$Wine, predProb)
 
 # ========== Fast Food boosting Regression ==========
 
-url = root + "fastfood.csv"
-fastfood=read.csv(url)
+url = "fastfood.csv"
+fastfood=read.csv(paste0(root, url))
 fastfood
 
 fastfood$calories <- as.factor(fastfood$calories)

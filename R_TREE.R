@@ -27,7 +27,7 @@ mean(test$cyl != tree_pred)
 
 
 # ========== SPAM EMAIL TREE ==========
-spam <- read.csv(root + "kernlab_spam.csv")
+spam <- read.csv(paste0(root, "kernlab_spam.csv"))
 spam$type <- as.factor(spam$type)
 tree_out = tree(type ~ ., data=spam)
 summary(tree_out)
@@ -55,7 +55,7 @@ cat("Misclassification rate:", misclass_rate, "\n")
 
 # ========== Heart Tree ==========
 
-heart <- read.csv(root + "HeartFailure.csv")
+heart <- read.csv(paste0(root, "HeartFailure.csv"))
 heart$DEATH_EVENT <- as.factor(heart$DEATH_EVENT)
 tree_out = tree(DEATH_EVENT ~ ., data=heart)
 summary(tree_out)
@@ -80,7 +80,7 @@ cat("Misclassification rate:", misclass_rate, "\n")
 
 
 #  ========== FastFood tree ==========
-fastfood <- read.csv(root+"fastfood.csv")
+fastfood <- read.csv(paste0(root, "fastfood.csv"))
 fastfood$restaurant <- as.factor(fastfood$restaurant)
 fastfood <- na.omit(fastfood)
 fastfood <- fastfood[, -2]

@@ -85,7 +85,7 @@ plot(bestmod, train_data)
 
 
 ## ========== SPAM SVM ==========
-spam <- read.csv(root + "kernlab_spam.csv")
+spam <- read.csv(paste0(root, "kernlab_spam.csv"))
 # Recode the 'type' column
 spam <- spam %>%
   mutate(type = ifelse(type == "spam", 1, 0))
@@ -160,7 +160,7 @@ plot(bestmod, train_data)
 
 
 ##  ========== HEART SVM ==========
-heart <- read.csv(root + "HeartFailure.csv")
+heart <- read.csv(paste0(root, "HeartFailure.csv"))
 heart
 
 pairs(heart)
@@ -232,7 +232,7 @@ plot(bestmod, train_data)
 
 
 ## ========== WINE SVM ==========
-wine <- read.csv(root + "wine.csv")
+wine <- read.csv(paste0(root, "wine.csv"))
 pairs(wine)
 
 # Prepare the data
@@ -301,7 +301,7 @@ plot(bestmod, train_data)
 
 
 ## ========== FOODs SVM ==========
-food <- read.csv(root + "fastfood.csv")
+food <- read.csv(paste0(root, "fastfood.csv"))
 food <- food[, !(names(food) %in% c("item", "salad"))]
 food <- na.omit(food)
 unique(food$restaurant)

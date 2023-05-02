@@ -56,7 +56,7 @@ mean((CarY_test - pred)^2)
 
 #========== KERN Dataset ==========
 
-kern = read.csv(root + "kernlab_spam.csv")
+kern = read.csv(paste0(root, "kernlab_spam.csv"))
 kern
 
 # ========== KNN Classification ==========
@@ -104,7 +104,7 @@ mean((KernY_test - pred)^2)
 
 # ========== Heart Failure Dataset ==========
 
-Heart=read.csv(root+"HeartFailure.csv")
+Heart=read.csv(paste0(root, "HeartFailure.csv"))
 Heart
 
 # ========== KNN Classification ==========
@@ -151,7 +151,7 @@ mean((HeartY_test - pred)^2)
 
 #Wine Dataset
 
-wine=read.csv(root + "wine.csv")
+wine=read.csv(paste0(root, "wine.csv"))
 wine
 
 # ========== KNN Classification ==========
@@ -196,7 +196,7 @@ mean((WineY_test - pred)^2)
 
 #Fast food data set
 
-fastfood=read.csv(root + "fastfood.csv")
+fastfood=read.csv(paste0(root, "fastfood.csv"))
 fastfood
 fastfood$restaurant <- as.factor(fastfood$restaurant)
 fastfood <- na.omit(fastfood)

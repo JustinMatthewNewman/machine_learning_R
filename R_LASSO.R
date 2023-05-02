@@ -58,7 +58,7 @@ test_mse
 
 
 # Load the mtcars dataset
-spam <- read.csv(root + "kernlab_spam.csv")
+spam <- read.csv(paste0(root, "kernlab_spam.csv"))
 
 # Define the response variable
 y <- spam$free
@@ -104,7 +104,7 @@ test_mse
 
 
 # Load the mtcars dataset
-heart <- read.csv(root + "HeartFailure.csv")
+heart <- read.csv(paste0(root, "HeartFailure.csv"))
 
 # Define the response variable
 y <- heart$age
@@ -151,7 +151,7 @@ sqrt(test_mse)
 
 
 # Load the mtcars dataset
-wine <- read.csv(root + "wine.csv")
+wine <- read.csv(paste0(root, "wine.csv"))
 
 # Define the response variable
 y <- wine$Malic.acid
@@ -200,7 +200,7 @@ sqrt(test_mse)
 
 
 # Load the mtcars dataset
-food <- read.csv(root + "fastfood.csv")
+food <- read.csv(paste0(root,   "fastfood.csv"))
 food <- na.omit(food)
 
 # Define the response variable

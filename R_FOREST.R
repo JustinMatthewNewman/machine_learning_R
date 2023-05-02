@@ -61,7 +61,7 @@ varImpPlot(rf_mtcars)
 
 # ========== SPAM FOREST ==========
 
-spam <- read.csv(root + "kernlab_spam.csv")
+spam <- read.csv(paste0(root, "kernlab_spam.csv"))
 # Recode the 'type' column
 spam <- spam %>%
   mutate(type = ifelse(type == "spam", 1, 0))
@@ -117,7 +117,7 @@ varImpPlot(rf_spam)
 
 # ========== HEART FOREST ==========
 
-heart <- read.csv(root + "HeartFailure.csv")
+heart <- read.csv(paste0(root, "HeartFailure.csv"))
 heart
 
 set.seed(1)
@@ -166,7 +166,7 @@ varImpPlot(rf_heart)
 
 # ========== Wine FOREST ==========
 
-wine <- read.csv(root + "wine.csv")
+wine <- read.csv(paste0(root, "wine.csv"))
 wine
 
 set.seed(1)
@@ -214,7 +214,7 @@ varImpPlot(rf_wine)
 
 # ========== food FOREST ==========
 
-food <- read.csv(root + "fastfood.csv")
+food <- read.csv(paste0(root,"fastfood.csv"))
 food <- na.omit(food)
 food$restaurant <- recode(food$restaurant, 
                           "Mcdonalds" = 1,

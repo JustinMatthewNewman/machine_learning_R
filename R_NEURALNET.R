@@ -48,7 +48,7 @@ test_pred
 
 
 #SPAM DATA NN
-spamdata <- read.csv(root + "kernlab_spam.csv")
+spamdata <- read.csv(paste0(root, "kernlab_spam.csv"))
 spamdata$type <- as.factor(spamdata$type)
 set.seed(1)
 train_idx <- sample(1:nrow(spamdata), nrow(spamdata)*0.7)
@@ -66,7 +66,7 @@ test_pred
 
 
 #HEART FAILURE DATA NN
-heart <- read.csv(root + "HeartFailure.csv")
+heart <- read.csv(paste0(root,  "HeartFailure.csv"))
 heart$DEATH_EVENT <- as.factor(heart$DEATH_EVENT)
 set.seed(1)
 train_idx <- sample(1:nrow(heart), nrow(heart)*0.7)
@@ -85,7 +85,7 @@ test_pred
 
 
 # WINE DATA NN 
-wine <- read.csv(root + "wine.csv")
+wine <- read.csv(paste0(root, "wine.csv"))
 wine$Wine <- as.factor(wine$Wine)
 set.seed(1)
 train_idx <- sample(1:nrow(wine), nrow(wine)*0.7)
@@ -103,7 +103,7 @@ test_pred
 
 
 # FAST FOOD NN
-fastfood <- read.csv(root + "fastfood.csv")
+fastfood <- read.csv(paste0(root, "fastfood.csv"))
 fastfood$restaurant <- as.factor(fastfood$restaurant)
 fastfood <- na.omit(fastfood)
 fastfood <- fastfood[, -2]
@@ -120,17 +120,5 @@ test_pred <- max.col(test_pred_result)
 accuracy <- sum(test_pred == test_data$restaurant) / nrow(test_data)
 accuracy
 test_pred
-
-
-
-
-
-
-
-
-
-
-
-
 
 

@@ -47,7 +47,7 @@ mean((test$cyl-pred)^2)
 
 
 #spam data set
-spam <- read.csv(root + 'kernlab_spam.csv')
+spam <- read.csv(paste0(root, 'kernlab_spam.csv'))
 spam=na.omit(spam) # remove missing observations
 
 x = model.matrix(type~., spam)[,-1]
@@ -73,7 +73,7 @@ mean((test$type-pred)^2)
 
 #heart data set
 
-heart <- read.csv(root + 'HeartFailure.csv')
+heart <- read.csv(paste0(root, 'HeartFailure.csv'))
 heart=na.omit(heart) # remove missing observations
 
 x = model.matrix(DEATH_EVENT~., heart)[,-1]
@@ -102,7 +102,7 @@ mean((test$DEATH_EVENT-pred)^2)
 
 
 #wine data set
-wine <- read.csv(root + 'wine.csv')
+wine <- read.csv(paste0(root, 'wine.csv'))
 wine=na.omit(wine) # remove missing observations
 
 x = model.matrix(Wine~., wine)[,-1]
@@ -132,7 +132,7 @@ mean((test$Wine-pred)^2)
 
 
 
-fastfood <- read.csv(root + 'fastfood.csv')
+fastfood <- read.csv(paste0(root,  'fastfood.csv'))
 fastfood=na.omit(fastfood) # remove missing observations
 
 x = model.matrix(restaurant~., fastfood)[,-1]
