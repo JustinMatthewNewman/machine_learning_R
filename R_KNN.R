@@ -5,14 +5,13 @@ library(class)
 library(readr)
 
 ## KNN FILE BY Hannah Dalakate Phommachanthone
-
-
-#mtcars data set
+root = "https://raw.githubusercontent.com/JustinMatthewNewman/machine_learning_R/main/datasets/"
+#========== mtcars data set ==========
 
 mtcars=mtcars
 mtcars
 
-#KNN Classification
+# ========== KNN Classification ==========
 
 set.seed(1)
 
@@ -47,7 +46,7 @@ for (i in 1: M){
 }
 which(miserror==min(miserror))
 
-#KNN Regression
+# ========== KNN Regression ==========
 
 set.seed(1)
 
@@ -55,13 +54,12 @@ predout=knn.reg(train=CarX_train, test=CarX_test, y=CarY_train, k=5)
 pred=predout$pred
 mean((CarY_test - pred)^2)
 
-#KERN Dataset
+#========== KERN Dataset ==========
 
-url = "https://raw.githubusercontent.com/JustinMatthewNewman/machine_learning_R/main/datasets/kernlab_spam.csv"
-kern = read.csv(url)
+kern = read.csv(root + "kernlab_spam.csv")
 kern
 
-#KNN Classification
+# ========== KNN Classification ==========
 
 set.seed(1)
 
@@ -96,7 +94,7 @@ for (i in 1: M){
 }
 which(miserror==min(miserror))
 
-#KNN Regression
+# ========== KNN Regression ==========
 
 set.seed(1)
 
@@ -104,12 +102,12 @@ predout=knn.reg(train=KernX_train, test=KernX_test, y=KernY_train, k=5)
 pred=predout$pred
 mean((KernY_test - pred)^2)
 
-#Heart Failure Dataset
+# ========== Heart Failure Dataset ==========
 
-Heart=read.csv("https://raw.githubusercontent.com/JustinMatthewNewman/machine_learning_R/main/datasets/HeartFailure.csv")
+Heart=read.csv(root+"HeartFailure.csv")
 Heart
 
-#KNN Classification
+# ========== KNN Classification ==========
 
 set.seed(1)
 
@@ -143,7 +141,7 @@ which(miserror==min(miserror))
 
 
 
-#KNN Regression
+# ========== KNN Regression ==========
 
 set.seed(1)
 
@@ -153,11 +151,10 @@ mean((HeartY_test - pred)^2)
 
 #Wine Dataset
 
-url = "https://raw.githubusercontent.com/JustinMatthewNewman/machine_learning_R/main/datasets/wine.csv"
-wine=read.csv(url)
+wine=read.csv(root + "wine.csv")
 wine
 
-#KNN Classification
+# ========== KNN Classification ==========
 
 set.seed(1)
 
@@ -189,7 +186,7 @@ for (i in 1: M){
 }
 which(miserror==min(miserror))
 
-#KNN Regression
+# ========== KNN Regression ==========
 
 set.seed(1)
 
@@ -199,8 +196,7 @@ mean((WineY_test - pred)^2)
 
 #Fast food data set
 
-url = "https://raw.githubusercontent.com/JustinMatthewNewman/machine_learning_R/main/datasets/fastfood.csv"
-fastfood=read.csv(url)
+fastfood=read.csv(root + "fastfood.csv")
 fastfood
 fastfood$restaurant <- as.factor(fastfood$restaurant)
 fastfood <- na.omit(fastfood)
@@ -219,7 +215,7 @@ fastfood <- fastfood[fastfood$restaurant != 3, ]
 
 fastfood$restaurant
 
-#KNN Classification
+# ========== KNN Classification ==========
 
 set.seed(1)
 
@@ -257,8 +253,8 @@ for (i in 1: M){
   miserror[i]=mean(pred != FoodY_test)
 }
 which(miserror==min(miserror))
-
-#KNN Regression
+ 
+# ========== KNN Regression ==========
 
 set.seed(1)
 

@@ -1,10 +1,11 @@
 library(e1071)
 library(ggplot2)
 library(dplyr)
+root = "https://raw.githubusercontent.com/JustinMatthewNewman/machine_learning_R/main/datasets/"
 
 par(mfrow = c(1, 1)) # Default value for mf
 
-## SVM MTCARS
+## ========== SVM MTCARS ==========
 
 # Load the mtcars dataset
 data(mtcars)
@@ -83,8 +84,8 @@ plot(bestmod, train_data)
 
 
 
-## SPAM SVM
-spam <- read.csv("~/Documents/math358/kernlab_spam.csv")
+## ========== SPAM SVM ==========
+spam <- read.csv(root + "kernlab_spam.csv")
 # Recode the 'type' column
 spam <- spam %>%
   mutate(type = ifelse(type == "spam", 1, 0))
@@ -158,8 +159,8 @@ plot(bestmod, train_data)
 
 
 
-## HEART SVM
-heart <- read.csv("~/Documents/math358/HeartFailure.csv")
+##  ========== HEART SVM ==========
+heart <- read.csv(root + "HeartFailure.csv")
 heart
 
 pairs(heart)
@@ -230,8 +231,8 @@ plot(bestmod, train_data)
 
 
 
-## WINE SVM
-wine <- read.csv("~/Documents/math358/wine.csv")
+## ========== WINE SVM ==========
+wine <- read.csv(root + "wine.csv")
 pairs(wine)
 
 # Prepare the data
@@ -299,8 +300,8 @@ plot(bestmod, train_data)
 
 
 
-## FOODs SVM
-food <- read.csv("~/Documents/math358/fastfood.csv")
+## ========== FOODs SVM ==========
+food <- read.csv(root + "fastfood.csv")
 food <- food[, !(names(food) %in% c("item", "salad"))]
 food <- na.omit(food)
 unique(food$restaurant)

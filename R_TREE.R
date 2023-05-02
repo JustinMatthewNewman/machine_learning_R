@@ -1,9 +1,10 @@
+library(tree)
+root = "https://raw.githubusercontent.com/JustinMatthewNewman/machine_learning_R/main/datasets/"
 
-# MTCARS TREE
+# ========== MTCARS TREE ==========
 
 data(mtcars)
 mtcars$cyl = as.factor(mtcars$cyl)
-library(tree)
 tree_out = tree(cyl ~ ., data=mtcars)
 summary(tree_out)
 plot(tree_out)
@@ -25,10 +26,9 @@ mean(test$cyl != tree_pred)
 
 
 
-# SPAM EMAIL TREE
-spam <- read.csv("~/kernlab_spam.csv")
+# ========== SPAM EMAIL TREE ==========
+spam <- read.csv(root + "kernlab_spam.csv")
 spam$type <- as.factor(spam$type)
-library(tree)
 tree_out = tree(type ~ ., data=spam)
 summary(tree_out)
 plot(tree_out)
@@ -53,11 +53,10 @@ cat("Misclassification rate:", misclass_rate, "\n")
 
 
 
-# Heart Tree
+# ========== Heart Tree ==========
 
-heart <- read.csv("~/HeartFailure.csv")
+heart <- read.csv(root + "HeartFailure.csv")
 heart$DEATH_EVENT <- as.factor(heart$DEATH_EVENT)
-library(tree)
 tree_out = tree(DEATH_EVENT ~ ., data=heart)
 summary(tree_out)
 plot(tree_out)
@@ -78,16 +77,15 @@ table(tree_pred, test$DEATH_EVENT)
 mean(test$DEATH_EVENT != tree_pred)
 misclass_rate <- mean(test$DEATH_EVENT != tree_pred)
 cat("Misclassification rate:", misclass_rate, "\n")
-fastfood <- read.csv("~/fastfood.csv")
+
+
+#  ========== FastFood tree ==========
+fastfood <- read.csv(root+"fastfood.csv")
 fastfood$restaurant <- as.factor(fastfood$restaurant)
 fastfood <- na.omit(fastfood)
 fastfood <- fastfood[, -2]
 fastfood <- fastfood[, -16]
 
-
-# FastFood tree
-
-library(tree)
 tree_out = tree(restaurant ~ ., data=fastfood)
 summary(tree_out)
 plot(tree_out)

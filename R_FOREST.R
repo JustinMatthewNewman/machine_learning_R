@@ -3,9 +3,13 @@ library(ISLR2) # find data sets
 library(dplyr) # split data
 library(ggplot2) # plot
 library(randomForest)
+root = "https://raw.githubusercontent.com/JustinMatthewNewman/machine_learning_R/main/datasets/"
 
 
-# MTCARS FOREST
+
+
+
+# ========== MTCARS FOREST ==========
 
 data(mtcars)
 mtcars$cyl = as.numeric(mtcars$cyl)
@@ -52,9 +56,12 @@ varImpPlot(rf_mtcars)
 
 
 
-# SPAM FOREST
 
-spam <- read.csv("~/Documents/math358/kernlab_spam.csv")
+
+
+# ========== SPAM FOREST ==========
+
+spam <- read.csv(root + "kernlab_spam.csv")
 # Recode the 'type' column
 spam <- spam %>%
   mutate(type = ifelse(type == "spam", 1, 0))
@@ -108,9 +115,9 @@ varImpPlot(rf_spam)
 
 
 
-# HEART FOREST
+# ========== HEART FOREST ==========
 
-heart <- read.csv("https://raw.githubusercontent.com/JustinMatthewNewman/machine_learning_R/main/datasets/HeartFailure.csv")
+heart <- read.csv(root + "HeartFailure.csv")
 heart
 
 set.seed(1)
@@ -157,9 +164,9 @@ varImpPlot(rf_heart)
 
 
 
-# Wine FOREST
+# ========== Wine FOREST ==========
 
-wine <- read.csv("https://raw.githubusercontent.com/JustinMatthewNewman/machine_learning_R/main/datasets/wine.csv")
+wine <- read.csv(root + "wine.csv")
 wine
 
 set.seed(1)
@@ -203,9 +210,11 @@ varImpPlot(rf_wine)
 
 
 
-# Wine FOREST
 
-food <- read.csv("https://raw.githubusercontent.com/JustinMatthewNewman/machine_learning_R/main/datasets/fastfood.csv")
+
+# ========== food FOREST ==========
+
+food <- read.csv(root + "fastfood.csv")
 food <- na.omit(food)
 food$restaurant <- recode(food$restaurant, 
                           "Mcdonalds" = 1,

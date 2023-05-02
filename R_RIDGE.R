@@ -1,9 +1,8 @@
 # Project work by DANA Stufin
 #fast food data set
-fastfood <- read.csv('fastfood.csv')
-getwd()
-setwd("C:/Users/Dana/Desktop")
-getwd()
+
+
+root = "https://raw.githubusercontent.com/JustinMatthewNewman/machine_learning_R/main/datasets/"
 
 
 library(ISLR2)
@@ -11,30 +10,7 @@ library(glmnet)
 library(dplyr)
 library(tidyr)
 
-fastfood <- read.csv('fastfood.csv')
 
-
-fastfood=na.omit(fastfood) # remove missing observations
-
-x = model.matrix(restaurant~., fastfood)[,-1]
-y = fastfood$restaurant
-
-set.seed(1)
-train = fastfood %>%
-  sample_frac(0.67)
-test = fastfood %>%
-  setdiff(train)
-
-xtrain = x[1:nrow(train), ]
-ytrain = y[1:nrow(train)]
-xtest = x[(nrow(train)+1):nrow(x), ]
-
-cv.out <- cv.glmnet(xtrain, ytrain, alpha=1, nfolds=5)
-plot(cv.out)
-bestlam=cv.out$lambda.min
-ridge.out=glmnet(xtrain, ytrain, alpha=1, lambda=bestlam)
-pred = predict(ridge.out, newx= xtest)
-mean((test$restaurant-pred)^2)
 
 #mtcars data set
 library(tidyverse)
@@ -68,34 +44,10 @@ pred = predict(ridge.out, newx= xtest)
 mean((test$cyl-pred)^2)
 
 
-#wine data set
-wine <- read.csv('wine.csv')
-wine=na.omit(wine) # remove missing observations
-
-x = model.matrix(Wine~., wine)[,-1]
-y = wine$Wine
-
-set.seed(1)
-train = wine %>%
-  sample_frac(0.67)
-test = wine %>%
-  setdiff(train)
-
-xtrain = x[1:nrow(train), ]
-ytrain = y[1:nrow(train)]
-xtest = x[(nrow(train)+1):nrow(x), ]
-
-cv.out <- cv.glmnet(xtrain, ytrain, alpha=1, nfolds=5)
-plot(cv.out)
-bestlam=cv.out$lambda.min
-ridge.out=glmnet(xtrain, ytrain, alpha=1, lambda=bestlam)
-pred = predict(ridge.out, newx= xtest)
-mean((test$Wine-pred)^2)
-
 
 
 #spam data set
-spam <- read.csv('kernlab_spam.csv')
+spam <- read.csv(root + 'kernlab_spam.csv')
 spam=na.omit(spam) # remove missing observations
 
 x = model.matrix(type~., spam)[,-1]
@@ -121,7 +73,7 @@ mean((test$type-pred)^2)
 
 #heart data set
 
-heart <- read.csv('HeartFailure.csv')
+heart <- read.csv(root + 'HeartFailure.csv')
 heart=na.omit(heart) # remove missing observations
 
 x = model.matrix(DEATH_EVENT~., heart)[,-1]
@@ -143,3 +95,63 @@ bestlam=cv.out$lambda.min
 ridge.out=glmnet(xtrain, ytrain, alpha=1, lambda=bestlam)
 pred = predict(ridge.out, newx= xtest)
 mean((test$DEATH_EVENT-pred)^2)
+
+
+
+
+
+
+#wine data set
+wine <- read.csv(root + 'wine.csv')
+wine=na.omit(wine) # remove missing observations
+
+x = model.matrix(Wine~., wine)[,-1]
+y = wine$Wine
+
+set.seed(1)
+train = wine %>%
+  sample_frac(0.67)
+test = wine %>%
+  setdiff(train)
+
+xtrain = x[1:nrow(train), ]
+ytrain = y[1:nrow(train)]
+xtest = x[(nrow(train)+1):nrow(x), ]
+
+cv.out <- cv.glmnet(xtrain, ytrain, alpha=1, nfolds=5)
+plot(cv.out)
+bestlam=cv.out$lambda.min
+ridge.out=glmnet(xtrain, ytrain, alpha=1, lambda=bestlam)
+pred = predict(ridge.out, newx= xtest)
+mean((test$Wine-pred)^2)
+
+
+
+
+
+
+
+
+fastfood <- read.csv(root + 'fastfood.csv')
+fastfood=na.omit(fastfood) # remove missing observations
+
+x = model.matrix(restaurant~., fastfood)[,-1]
+y = fastfood$restaurant
+
+set.seed(1)
+train = fastfood %>%
+  sample_frac(0.67)
+test = fastfood %>%
+  setdiff(train)
+
+xtrain = x[1:nrow(train), ]
+ytrain = y[1:nrow(train)]
+xtest = x[(nrow(train)+1):nrow(x), ]
+
+cv.out <- cv.glmnet(xtrain, ytrain, alpha=1, nfolds=5)
+plot(cv.out)
+bestlam=cv.out$lambda.min
+ridge.out=glmnet(xtrain, ytrain, alpha=1, lambda=bestlam)
+pred = predict(ridge.out, newx= xtest)
+mean((test$restaurant-pred)^2)
+

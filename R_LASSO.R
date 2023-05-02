@@ -1,6 +1,7 @@
 # Load required libraries
 library(ISLR2)
 library(glmnet)
+root = "https://raw.githubusercontent.com/JustinMatthewNewman/machine_learning_R/main/datasets/"
 
 
 # =========== MTCARS LASSO =============
@@ -57,7 +58,7 @@ test_mse
 
 
 # Load the mtcars dataset
-spam <- read.csv("~/Documents/math358/kernlab_spam.csv")
+spam <- read.csv(root + "kernlab_spam.csv")
 
 # Define the response variable
 y <- spam$free
@@ -103,7 +104,7 @@ test_mse
 
 
 # Load the mtcars dataset
-heart <- read.csv("~/Documents/math358/HeartFailure.csv")
+heart <- read.csv(root + "HeartFailure.csv")
 
 # Define the response variable
 y <- heart$age
@@ -150,7 +151,7 @@ sqrt(test_mse)
 
 
 # Load the mtcars dataset
-wine <- read.csv("~/Documents/math358/wine.csv")
+wine <- read.csv(root + "wine.csv")
 
 # Define the response variable
 y <- wine$Malic.acid
@@ -199,7 +200,7 @@ sqrt(test_mse)
 
 
 # Load the mtcars dataset
-food <- read.csv("~/Documents/math358/fastfood.csv")
+food <- read.csv(root + "fastfood.csv")
 food <- na.omit(food)
 
 # Define the response variable

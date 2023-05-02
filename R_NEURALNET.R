@@ -2,6 +2,9 @@
 
 #IRIS NN EXAMPLE
 
+root = "https://raw.githubusercontent.com/JustinMatthewNewman/machine_learning_R/main/datasets/"
+
+
 library(neuralnet)
 data(iris)
 iris$setosa <- ifelse(iris$Species == "setosa", 1, 0)
@@ -45,7 +48,7 @@ test_pred
 
 
 #SPAM DATA NN
-spamdata <- read.csv("~/Documents/math358/kernlab_spam.csv")
+spamdata <- read.csv(root + "kernlab_spam.csv")
 spamdata$type <- as.factor(spamdata$type)
 set.seed(1)
 train_idx <- sample(1:nrow(spamdata), nrow(spamdata)*0.7)
@@ -63,7 +66,7 @@ test_pred
 
 
 #HEART FAILURE DATA NN
-heart <- read.csv("~/Documents/math358/HeartFailure.csv")
+heart <- read.csv(root + "HeartFailure.csv")
 heart$DEATH_EVENT <- as.factor(heart$DEATH_EVENT)
 set.seed(1)
 train_idx <- sample(1:nrow(heart), nrow(heart)*0.7)
@@ -82,7 +85,7 @@ test_pred
 
 
 # WINE DATA NN 
-wine <- read.csv("~/Documents/math358/wine.csv")
+wine <- read.csv(root + "wine.csv")
 wine$Wine <- as.factor(wine$Wine)
 set.seed(1)
 train_idx <- sample(1:nrow(wine), nrow(wine)*0.7)
@@ -100,7 +103,7 @@ test_pred
 
 
 # FAST FOOD NN
-fastfood <- read.csv("~/Documents/math358/fastfood.csv")
+fastfood <- read.csv(root + "fastfood.csv")
 fastfood$restaurant <- as.factor(fastfood$restaurant)
 fastfood <- na.omit(fastfood)
 fastfood <- fastfood[, -2]
