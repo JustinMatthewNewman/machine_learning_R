@@ -59,7 +59,7 @@ R
 :handshake: Contributors
 
     Justin Newman - GitHub
-    Hannah Ph - GitHub
+    Hannah Phommachanthone - GitHub
     Dana Stufin - GitHub
     Grace - GitHub
 
