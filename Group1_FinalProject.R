@@ -16,22 +16,72 @@
 #        |  | --' |  |   ' '-' ' |  |\   --.\ `--.  |  |   
 #        `--'     `--'    `---'.-'  / `----' `---'  `--'   o
 #                              '---'                       
-#        
+#
+#        MATH 358 FINAL_PROJECT - May 2nd 2023.
+#
 #   Authors: Justin Newman, Hannah Dalakate Phommachanthone
 #                       Grace Dwindel and Dana Stufin.
 # 
 #   Instructor: Dr. Chen
-
-# ======================      DATASETS LOCATION  ==========================
-root = "https://raw.githubusercontent.com/JustinMatthewNewman/machine_learning_R/main/datasets/"
+# ==========================================================================
+# ======================    DATASETS LOCATION   ==========================
+# ==========================================================================
+str1 <- "https://raw.githubusercontent.com/"
+str2 <-  "JustinMatthewNewman/machine_learning_R/main/datasets/"
+root = paste0(str1,str2)
 # ==========================================================================
 
+# Installations and packages
+
+#BOOST
+#install.packages("readr")
+#install.packages("pROC")
+#install.packages("dplyr")
+#install.packages("gbm")
+#
+##KNN
+#install.packages("readr")
+#install.packages("pROC")
+#install.packages("dplyr")
+#install.packages("gbm")
+#
+##TREE
+#install.packages("tree")
+#
+##LASSO
+#install.packages("ISLR2")
+#install.packages("glmnet")
+#
+##Ridge
+#install.packages("ISLR2")
+#install.packages("glmnet")
+#install.packages("dplyr")
+#install.packages("tidyr")
+#
+##FOREST
+#install.packages("tree")
+#install.packages("ISLR2") # find data sets
+#install.packages("dplyr") # split data
+#install.packages("ggplot2") # plot
+#install.packages("randomForest")
+#
+##NETWORK
+#install.packages("neuralnet")
+
+
+#         USE (ctrl + F), or (cmd + F) on mac to quickly navigate.
+#
+#   OPTIONS: ( BOOST_FIND, KNN_FIND, TREE_FIND, 
+#              RIDGE_FIND, LASSO_FIND, SVM_FIND,
+#              NETWORK_FIND, FOREST_FIND )
+ 
+# ==========================================================================
 # ,-----.   ,-----.  ,-----.  ,---. ,--------. 
 # |  |) /_ '  .-.  ''  .-.  ''   .-''--.  .--' 
 # |  .-.  \|  | |  ||  | |  |`.  `-.   |  |    
 # |  '--' /'  '-'  ''  '-'  '.-'    |  |  |    
-# `------'  `-----'  `-----' `-----'   `--'
-
+# `------'  `-----'  `-----' `-----'   `--'o
+# BOOST_FIND
 # ==========================================================================
 
 library(readr)
@@ -42,119 +92,121 @@ library(gbm)
 
 # ========== mtcars boosting regression ==========
 
-mtcars=mtcars
-mtcars
-set.seed(1)
+# Commented out because N was too small to run boosting.
 
-mtcars_train = mtcars %>%
-  sample_frac(0.5)
-mtcars_test = mtcars %>%
-  setdiff(mtcars_train)
-
-set.seed(1)
-boost_mtcars = gbm(am~., 
-                   data=mtcars_train, 
-                   distribution = "gaussian",
-                   n.trees=15,
-                   interaction.depth = 5)
-summary(boost_mtcars)
-
-boost_estimate = predict(boost_mtcars,
-                         newdata= mtcars_test,
-                         n.trees = 5000)
-
-mean((boost_estimate - mtcars_test$am)^2)
-
-boost_mtcars2 = gbm(am~., data = mtcars_train,
-                    distribution = "gaussian",
-                    n.trees = 5000,
-                    interaction.depth = 4,
-                    shrinkage = 0.01,
-                    verbose = F)
-
-boost_estimate2 = predict(boost_mtcars2, newdata = mtcars_test, n.trees = 5000)
-mean((boost_estimate2 - mtcars_test$am)^2)
-
-# ========== mtcars boosting on classification ==========
-
-mtcars$am = as.numeric(mtcars$am)-1
-
-mtcars_train = mtcars %>%
-  sample_frac(0.67)
-mtcars_test = mtcars %>%
-  setdiff(mtcars_train)
-
-out=gbm(am~., data=mtcars_train, distribution="bernoulli", n.trees=5000)
-
-pred=predict(out, newdata=mtcars_test, n.trees=5000)
-
-predProb = exp(pred) / (1+exp(pred))
-
-auc(mtcars_test$am, predProb)
-
-
-
-# ========== KERN boosting regression ==========
-
-url = "kernlab_spam.csv"
-kern = read.csv(paste0(root, url))
-kern
-set.seed(1)
-
-kern_train = kern %>%
-  sample_frac(0.5)
-kern_test = kern %>%
-  setdiff(kern_train)
-
-set.seed(1)
-boost_kern = gbm(free~., 
-                 data=kern_train, 
-                 distribution = "gaussian",
-                 n.trees=5000,
-                 interaction.depth = 4)
-summary(boost_kern)
-
-boost_estimate = predict(boost_kern,
-                         newdata= kern_test,
-                         n.trees = 5000)
-
-mean((boost_estimate - kern_test$free)^2)
-
-boost_kern2 = gbm(free~., data = kern_train,
-                  distribution = "gaussian",
-                  n.trees = 5000,
-                  interaction.depth = 4,
-                  shrinkage = 0.01,
-                  verbose = F)
-
-boost_estimate2 = predict(boost_kern2, newdata = kern_test, n.trees = 5000)
-mean((boost_estimate2 - kern_test$free)^2)
-
-# ========== KERN boosting on classification ==========
-
-set.seed(1)
-
-kern <- kern %>%
-  mutate(type= ifelse(type = "spam", 1, 0))
-kern$type = as.numeric(kern$type)-1
-
-kern_train = kern %>%
-  sample_frac(0.67)
-kern_test = kern %>%
-  setdiff(kern_train)
-
-out=gbm(type~., data=kern_train, distribution="bernoulli", n.trees=5000)
-out
-
-pred=predict(out, newdata=kern_test, n.trees=5000)
-pred
-
-predProb = exp(pred) / (1+exp(pred))
-predProb
-
-auc(kern_test$type, predProb)
-
-
+# mtcars=mtcars
+# mtcars
+# set.seed(1)
+# 
+# mtcars_train = mtcars %>%
+#   sample_frac(0.5)
+# mtcars_test = mtcars %>%
+#   setdiff(mtcars_train)
+# 
+# set.seed(1)
+# boost_mtcars = gbm(am~., 
+#                    data=mtcars_train, 
+#                    distribution = "gaussian",
+#                    n.trees=15,
+#                    interaction.depth = 5)
+# summary(boost_mtcars)
+# 
+# boost_estimate = predict(boost_mtcars,
+#                          newdata= mtcars_test,
+#                          n.trees = 5000)
+# 
+# mean((boost_estimate - mtcars_test$am)^2)
+# 
+# boost_mtcars2 = gbm(am~., data = mtcars_train,
+#                     distribution = "gaussian",
+#                     n.trees = 5000,
+#                     interaction.depth = 4,
+#                     shrinkage = 0.01,
+#                     verbose = F)
+# 
+# boost_estimate2 = predict(boost_mtcars2, newdata = mtcars_test, n.trees = 5000)
+# mean((boost_estimate2 - mtcars_test$am)^2)
+# 
+# # ========== mtcars boosting on classification ==========
+# 
+# mtcars$am = as.numeric(mtcars$am)-1
+# 
+# mtcars_train = mtcars %>%
+#   sample_frac(0.67)
+# mtcars_test = mtcars %>%
+#   setdiff(mtcars_train)
+# 
+# out=gbm(am~., data=mtcars_train, distribution="bernoulli", n.trees=5000)
+# 
+# pred=predict(out, newdata=mtcars_test, n.trees=5000)
+# 
+# predProb = exp(pred) / (1+exp(pred))
+# 
+# auc(mtcars_test$am, predProb)
+# 
+# 
+# 
+# # ========== KERN boosting regression ==========
+# 
+# url = "kernlab_spam.csv"
+# kern = read.csv(paste0(root, url))
+# kern
+# set.seed(1)
+# 
+# kern_train = kern %>%
+#   sample_frac(0.5)
+# kern_test = kern %>%
+#   setdiff(kern_train)
+# 
+# set.seed(1)
+# boost_kern = gbm(free~., 
+#                  data=kern_train, 
+#                  distribution = "gaussian",
+#                  n.trees=5000,
+#                  interaction.depth = 4)
+# summary(boost_kern)
+# 
+# boost_estimate = predict(boost_kern,
+#                          newdata= kern_test,
+#                          n.trees = 5000)
+# 
+# mean((boost_estimate - kern_test$free)^2)
+# 
+# boost_kern2 = gbm(free~., data = kern_train,
+#                   distribution = "gaussian",
+#                   n.trees = 5000,
+#                   interaction.depth = 4,
+#                   shrinkage = 0.01,
+#                   verbose = F)
+# 
+# boost_estimate2 = predict(boost_kern2, newdata = kern_test, n.trees = 5000)
+# mean((boost_estimate2 - kern_test$free)^2)
+# 
+# # ========== KERN boosting on classification ==========
+# 
+# set.seed(1)
+# 
+# kern <- kern %>%
+#   mutate(type= ifelse(type = "spam", 1, 0))
+# kern$type = as.numeric(kern$type)-1
+# 
+# kern_train = kern %>%
+#   sample_frac(0.67)
+# kern_test = kern %>%
+#   setdiff(kern_train)
+# 
+# out=gbm(type~., data=kern_train, distribution="bernoulli", n.trees=5000)
+# out
+# 
+# pred=predict(out, newdata=kern_test, n.trees=5000)
+# pred
+# 
+# predProb = exp(pred) / (1+exp(pred))
+# predProb
+# 
+# auc(kern_test$type, predProb)
+# 
+# 
 
 # ========== Heart Failure boosting regression ==========
 
@@ -192,24 +244,24 @@ mean((boost_estimate2 - Heart_test$platelets)^2)
 
 # ========== Heart Failure boosting on Classification ==========
 
-Heart$DEATH_EVENT = as.numeric(Heart$DEATH_EVENT)-1
-
-set.seed(1)
-Heart_train = Heart %>%
-  sample_frac(0.67)
-Heart_test = Heart %>%
-  setdiff(Heart_train)
-
-out=gbm(DEATH_EVENT~., data=Heart_train, distribution="bernoulli", n.trees=5000)
-out
-
-pred=predict(out, newdata=Heart_test, n.trees=5000)
-pred
-
-predProb = exp(pred) / (1+exp(pred))
-predProb
-
-auc(Heart_test$DEATH_EVENT, predProb)
+# Heart$DEATH_EVENT = as.numeric(Heart$DEATH_EVENT)-1
+# 
+# set.seed(1)
+# Heart_train = Heart %>%
+#   sample_frac(0.67)
+# Heart_test = Heart %>%
+#   setdiff(Heart_train)
+# 
+# out=gbm(DEATH_EVENT~., data=Heart_train, distribution="bernoulli", n.trees=5000)
+# out
+# 
+# pred=predict(out, newdata=Heart_test, n.trees=5000)
+# pred
+# 
+# predProb = exp(pred) / (1+exp(pred))
+# predProb
+# 
+# auc(Heart_test$DEATH_EVENT, predProb)
 
 # ========== Wine Dataset ==========
 
@@ -251,36 +303,46 @@ mean((boost_estimate2 - wine_test$Malic.acid)^2)
 
 # ========== Wine boosting on classification ==========
 
-WineDat$Wine = as.numeric(WineDat$Wine)-1
-
-wine_train = WineDat %>%
-  sample_frac(0.67)
-wine_test = WineDat %>%
-  setdiff(wine_train)
-
-out=gbm(Wine~., data=wine_train, distribution="bernoulli", n.trees=5000)
-out
-
-pred=predict(out, newdata=wine_test, n.trees=5000)
-pred
-
-predProb = exp(pred) / (1+exp(pred))
-predProb
-
-auc(wine_test$Wine, predProb)
-
+# WineDat$Wine = as.numeric(WineDat$Wine)-1
+# 
+# wine_train = WineDat %>%
+#   sample_frac(0.67)
+# wine_test = WineDat %>%
+#   setdiff(wine_train)
+# 
+# out=gbm(Wine~., data=wine_train, distribution="bernoulli", n.trees=5000)
+# out
+# 
+# pred=predict(out, newdata=wine_test, n.trees=5000)
+# pred
+# 
+# predProb = exp(pred) / (1+exp(pred))
+# predProb
+# 
+# auc(wine_test$Wine, predProb)
+# 
 
 
 # ========== Fast Food boosting Regression ==========
 
-url = "fastfood.csv"
-fastfood=read.csv(paste0(root, url))
+fastfood <- read.csv(paste0(root, "fastfood.csv"))
+fastfood <- fastfood[, !(names(fastfood) %in% c("item", "salad"))]
+fastfood <- na.omit(fastfood)
+unique(fastfood$restaurant)
+fastfood$restaurant <- recode(fastfood$restaurant, 
+                          "Mcdonalds" = 1,
+                          "Chick Fil-A" = 3,
+                          "Sonic" = 3,
+                          "Arbys" = 3,
+                          "Dairy Queen" = 3,
+                          "Subway" = 0,
+                          "Taco Bell" = 3)
+fastfood <- fastfood[fastfood$restaurant != 3, ]
+
 fastfood
 
-fastfood$calories <- as.factor(fastfood$calories)
-fastfood <- na.omit(fastfood)
-fastfood <- fastfood[,-2]
-fastfood <- fastfood[,-16]
+# Prepare the data
+fastfood$restaurant <- as.factor(fastfood$restaurant)
 
 set.seed(1)
 
@@ -341,22 +403,13 @@ auc(Food_test$restaurant, predProb)
 
 
 
-
-
-
-
-
-
 # ==========================================================================
-
-# 
 # --------.                      
 # --.  .--',--.--. ,---.  ,---.  
 #   |  |   |  .--'| .-. :| .-. : 
 #   |  |   |  |   \   --.\   --. 
-#   `--'   `--'    `----' `----' 
-# 
-
+#   `--'   `--'    `----' `----' o
+# TREE_FIND
 # ==========================================================================
 
 
@@ -484,7 +537,8 @@ cat("Misclassification rate:", misclass_rate, "\n")
 # |  |    ,--,--. ,---.  ,---.  ,---.  
 # |  |   ' ,-.  |(  .-' (  .-' | .-. | 
 # |  '--.\ '-'  |.-'  `).-'  `)' '-' ' 
-# `-----' `--`--'`----' `----'  `---'  
+# `-----' `--`--'`----' `----'  `---'  o
+# LASSO_FIND
 # ==========================================================================
 
 
@@ -527,8 +581,6 @@ new = matrix(c(24, 2.5, 3.5, 18.5), nrow=1, ncol=4)
 #lasso regression model to predict response value
 predict(best_model, s = best_lambda, newx = new)
 
-# Print the predicted value
-prediction
 
 # Calculate the test MSE
 test_mse <- cv_model$cvm[cv_model$lambda == best_lambda]
@@ -578,9 +630,6 @@ new = matrix(c(24, 2.5, 3.5, 18.5), nrow=1, ncol=4)
 #lasso regression model to predict response value
 predict(best_model, s = best_lambda, newx = new)
 
-# Print the predicted value
-prediction
-
 # Calculate the test MSE
 test_mse <- cv_model$cvm[cv_model$lambda == best_lambda]
 test_mse
@@ -624,12 +673,9 @@ new = matrix(c(24, 2.5, 3.5, 18.5), nrow=1, ncol=4)
 #lasso regression model to predict response value
 predict(best_model, s = best_lambda, newx = new)
 
-# Print the predicted value
-prediction
-
 # Calculate the test MSE
 test_mse <- cv_model$cvm[cv_model$lambda == best_lambda]
-sqrt(test_mse)
+test_mse
 
 
 
@@ -671,12 +717,10 @@ new = matrix(c(24, 2.5, 3.5, 18.5, 3, 5), nrow=1, ncol=6)
 #lasso regression model to predict response value
 predict(best_model, s = best_lambda, newx = new)
 
-# Print the predicted value
-prediction
 
 # Calculate the test MSE
 test_mse <- cv_model$cvm[cv_model$lambda == best_lambda]
-sqrt(test_mse)
+test_mse
 
 
 
@@ -722,12 +766,9 @@ new = matrix(c(24, 2.5, 3.5, 18.5, 3, 5), nrow=1, ncol=6)
 #lasso regression model to predict response value
 predict(best_model, s = best_lambda, newx = new)
 
-# Print the predicted value
-prediction
-
 # Calculate the test MSE
 test_mse <- cv_model$cvm[cv_model$lambda == best_lambda]
-sqrt(test_mse)
+test_mse
 
 
 
@@ -738,20 +779,15 @@ sqrt(test_mse)
 
 
 # ==========================================================================
-
 # ,------. ,--.   ,--.               
 # |  .--. '`--' ,-|  | ,---.  ,---.  
 # |  '--'.',--.' .-. || .-. || .-. : 
 # |  |\  \ |  |\ `-' |' '-' '\   --. 
-# `--' '--'`--' `---' .`-  /  `----' 
+# `--' '--'`--' `---' .`-  /  `----' o
+# RIDGE_FIND
 # ==========================================================================
 
-# Project work by DANA Stufin
-#fast food data set
-
-
-
-
+# Ridge Regression work by DANA Stufin.
 
 library(ISLR2)
 library(glmnet)
@@ -881,6 +917,7 @@ mean((test$Wine-pred)^2)
 
 
 fastfood <- read.csv(paste0(root,  'fastfood.csv'))
+
 fastfood=na.omit(fastfood) # remove missing observations
 
 x = model.matrix(restaurant~., fastfood)[,-1]
@@ -916,12 +953,12 @@ mean((test$restaurant-pred)^2)
 
 
 # ==========================================================================
-
 # ,------. ,-----. ,------. ,------. ,---. ,--------. 
 # |  .---''  .-.  '|  .--. '|  .---''   .-''--.  .--' 
 # |  `--, |  | |  ||  '--'.'|  `--, `.  `-.   |  |    
 # |  |`   '  '-'  '|  |\  \ |  `---..-'    |  |  |    
-# `--'     `-----' `--' '--'`------'`-----'   `--'    
+# `--'     `-----' `--' '--'`------'`-----'   `--'   
+# FOREST_FIND
 # ==========================================================================
 
 
@@ -1200,25 +1237,13 @@ varImpPlot(rf_food)
 
 
 # ==========================================================================
-
 # ,--.                     
 # |  |,-. ,--,--, ,--,--,  
 # |     / |      \|      \ 
 # |  \  \ |  ||  ||  ||  | 
-# `--'`--'`--''--'`--''--' 
+# `--'`--'`--''--'`--''--' o
+# KNN_FIND
 # ==========================================================================
-
-
-
-
-
-
-
-library(dplyr)
-library(FNN)
-library(ISLR)
-library(class)
-library(readr)
 
 ## KNN FILE BY Hannah Dalakate Phommachanthone
 
@@ -1492,6 +1517,7 @@ mean((FoodY_test - pred)^2)
 # `.  `-. \     /  |  |'.'|  | 
 # .-'    | \   /   |  |   |  | 
 # `-----'   `-'    `--'   `--' 
+# SVM_FIND
 # ==========================================================================
 
 
@@ -1888,7 +1914,7 @@ plot(bestmod, train_data)
 #|  |' '  ||  `--, |  | |  ||  '--'.'|  .-.  ||  |   |  |' '  ||  `--,    |  |    
 #|  | `   ||  `---.'  '-'  '|  |\  \ |  | |  ||  '--.|  | `   ||  `---.   |  |    
 #`--'  `--'`------' `-----' `--' '--'`--' `--'`-----'`--'  `--'`------'   `--'    
-#                                                                                 
+# NETWORK_FIND                                                                                 
 # ==========================================================================
 
 
