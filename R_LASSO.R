@@ -12,7 +12,7 @@ data(mtcars)
 y = mtcars$hp
 
 #matrix of predictor variables
-x = data.matrix(mtcars[, c('mpg', 'wt', 'drat', 'qsec')])
+x = data.matrix(mtcars[, c('mpg', 'wt', 'hp', 'cyl')])
 
 
 #k-fold cross-validation
